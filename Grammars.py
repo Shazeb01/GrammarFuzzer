@@ -81,3 +81,15 @@ Fake_Name = {
 if __name__ == "__main__":
 	for i in range(10):
          print(simple_grammar_fuzzer(grammar=Fake_Name, max_nonterminals=10))
+
+HTML_GRAMMAR = {
+        "<start>": ["<html-page>"],
+        "<html-page>": ["<opening-tag> This is html page! <closing-tag>"],
+        "<opening-tag>": ["<<id>>"],
+        "<id>": ["<tags>", "<id><tags>"],
+        "<tags>":["head","p","html","title"],
+        "<closing-tag>": ["</<id>"]
+        }
+if __name__ == "__main__":
+    for i in range(5):
+        print(simple_grammar_fuzzer(grammar=HTML_GRAMMAR, max_nonterminals=10))
