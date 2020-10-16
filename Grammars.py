@@ -6,6 +6,7 @@ START_SYMBOL = "<start>"
 #importing labraries
 import random
 import re
+from GrammarFuzzer import GrammarFuzzer
 
 #defining raw string in regex
 RE_NONTERMINAL = re.compile(r'(<[^<> ]*>)')
@@ -81,3 +82,14 @@ Fake_Name = {
 if __name__ == "__main__":
 	for i in range(10):
          print(simple_grammar_fuzzer(grammar=Fake_Name, max_nonterminals=10))
+
+HTML_GRAMMAR = {
+    "<start>": ["<xml-tree>"],
+    "<xml-tree>": ["<<id>><xml-content></<id>>"],
+    "<xml-content>": ["Text", "<xml-tree>"],
+    "<id>": ["<letter>", "<id><letter>"],
+    "<letter>": ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
+}
+
+g = GrammarFuzzer(HTML_GRAMMAR)
+g.fuzz()
